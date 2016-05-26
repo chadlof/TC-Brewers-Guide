@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+       <title>About</title>
+         <link rel="shortcut icon" href="img/mn_craft_brews.jpg">
+        <meta charset="UTF-8">
+        <meta name="description" content="Twin Cities Craft brew's Guide">
+        <meta name="keywords" content="Twin Cities Craft brew's Guide">
+        <meta name="author" content="Chad Lofgren">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        
+         <style type="text/css">
+             
+             #article{
+                 height: 400px;
+                 width: 48%;
+                 float: right;
+                 text-align:center;
+                 margin-right: 50px;
+                 margin-top: 20px;
+                 }   
+             #aboutimg{
+                 height: 200px;
+                 width: 480;
+                 float: left;
+                 margin-top: 100px;
+                 margin-left: 20px;
+                 }
+             h4{
+                 color: #e60000;
+             }
+             
+@media (min-width: 700px) and (max-width: 1200px) {
+    
+                 #aboutimg{
+                     float:none;
+                     width: 50%;
+                     height: 100%;
+                     margin: auto;
+                     /*background-color:red;*/
+                 }
+                #article{
+                    float:none;
+                     width: 100%;
+                     height: 100%;
+                     margin: auto;
+                    /* background-color: darkorange;*/
+    }
+                #contentwrapper{
+                 height: 100%;
+                 padding: inherit;
+                
+    }
+}
+             
+@media (max-width: 699px) {
+                #aboutimg{
+                     float:none;
+                     width: 50%;
+                     height: 100%;
+                     margin: auto;
+        
+                 }
+                  #article{
+                     float:none;
+                     width: 100%;
+                     height: 100%;
+                     margin: auto;
+    }
+                #contentwrapper{
+                     height: 100%;
+                     padding: inherit;
+                
+    }
+             
+  
+                #wrapper{
+                    width: 699px;
+                    height: 100%;
+    }
+           
+    
+}
+      
+        </style>
+    </head>
+
+    <body>
+       <div id="wrapper">
+       
+            <header id="header">
+                <div id="logo">
+                   <a href="assignment8.html"><img src="img/mn_brew_wide2.png" alt="brew logo" height="100" width="170" title="site logo"></a>
+                </div><!--logo-->
+                <div id="name">
+                    <h1>Twin Cities Craft Brewer's Guide</h1>
+                </div><!--mame-->
+                
+            </header>
+       
+               
+                    <nav id="navbox">
+                        <ul>
+                           <li class="listructure"><a href="assignment8.html">Home</a></li>
+                            <li class="listructure"><a class="current" href="about.html">About</a></li>
+                            <li class="listructure"><a href="contactus.php">Contact Us</a></li>
+                            <li class="listructure"><a href="brewcation.html">Brewcations</a></li>
+                            <li class="listructure"><a href="ontap.html">On Tap</a></li>
+                            <li class="listructure"><a href="events.html">Events</a></li>
+                        </ul>
+                    </nav>
+                
+        <div id="contentwrapper">
+            <section id="maincontent">
+                
+                <div id="aboutimg">
+                    <img src="img/cheers.jpg" alt="Surly Cheerss" title="Cheers" width="300" height="200">
+                </div><!--aboutimg-->
+                <article id="article">
+                    <h4>The Twin Cities Craft Brewers Guide, our mission is to educate, organize and inform the brew public about the growing number of craft breweries and taprooms in and around the Twin cities area.</h4>
+                    * In our opinion, the best beer is the freshest beer you can buy, and locally produced beer will always be freshest.
+                    <br>* We strive to educate the public that consuming beer is a pleasure that should be enjoyed in moderation.
+                    <br>* Finally, it is our mission to ensure that our rich brewing tradition will be carried on for future generations to enjoy.
+                    <br><h4>Whether you are native the Twin Cities, a new comer, or are simply enjoying everything our beautiful city's has to offer, we invite you to stop by one of our craft-breweries and enjoy a fresh pint of locally produced beer.</h4>
+                </article><!--article-->
+        
+            </section>
+        </div><!--contentwrapper-->
+  
+        <footer class="footer">
+
+			<p class="footer-company-motto">Twin Cities: Good people,Good beer!</p>
+
+			<p class="footer-links">
+				
+                            <a href="assignment8.html">Home</a>·
+                            <a href="about.html">About</a>·
+                            <a href="contactus.php">Contact Us</a>·
+                            <a href="brewcation.html">Brewcations</a>·
+                            <a href="ontap.html">On Tap</a>·
+                            <a href="events.html">Events</a>·
+       
+				
+			</p>
+
+			<p class="footer-company-name">Twin Cities Craft Brewer's Guide &copy; 2016</p>
+
+		</footer>
+        </div><!--wrapper-->   
+    </body>
+    
+<!--javascript-->
+        
+<script>
+$(function(){
+  $('a').each(function() {
+    if ($(this).prop('href') == window.location.href) {
+      $(this).addClass('current');
+    }
+  });
+});
+</script>    
+
+             
+</html>

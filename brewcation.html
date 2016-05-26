@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+       <title>Brewcations</title>
+         <link rel="shortcut icon" href="img/mn_craft_brews.jpg">
+        <meta charset="UTF-8">
+        <meta name="description" content="Twin Cities Craft brew's Guide">
+        <meta name="keywords" content="Twin Cities Craft brew's Guide">
+        <meta name="author" content="Chad Lofgren">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        
+        
+<!--googlemapsslider-->     
+       
+     
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+  <script type='text/javascript' src='js/example.js'></script>
+  <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=true'></script>
+  
+  <script type='text/javascript'>
+  
+    $(function() {
+    
+      var chicago = new google.maps.LatLng(41.924832, -87.697456),
+          pointToMoveTo, 
+          first = true,
+          curMarker = new google.maps.Marker({}),
+          $el;
+      
+      var myOptions = {
+          zoom: 14,
+          center: chicago,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+      
+      var map = new google.maps.Map($("#map_canvas")[0], myOptions);
+    
+      $("#locations li").mouseenter(function() {
+      
+        $el = $(this);
+                
+        if (!$el.hasClass("hover")) {
+        
+          $("#locations li").removeClass("hover");
+          $el.addClass("hover");
+        
+          if (!first) { 
+            
+            // Clear current marker
+            curMarker.setMap(); 
+            
+            // Set zoom back to Chicago level
+            // map.setZoom(10);
+          }
+          
+          // Move (pan) map to new location
+          pointToMoveTo = new google.maps.LatLng($el.attr("data-geo-lat"), $el.attr("data-geo-long"));
+          map.panTo(pointToMoveTo);
+          
+          // Add new marker
+          curMarker = new google.maps.Marker({
+              position: pointToMoveTo,
+              map: map,
+              icon: "img/beer-glass2.png"
+          });
+          
+          // On click, zoom map
+          google.maps.event.addListener(curMarker, 'click', function() {
+             map.setZoom(14);
+          });
+          
+          // Fill more info area
+          $("#more-info")
+            .find("h2")
+              .html($el.find("h3").html())
+              .end()
+            .find("p")
+              .html($el.find(".longdesc").html());
+          
+          // No longer the first time through (re: marker clearing)        
+          first = false; 
+        }
+        
+      });
+      
+      $("#locations li:first").trigger("mouseenter");
+      
+    });
+
+  </script>
+        
+   
+<!--internalCSS-->
+        
+         <style type="text/css">
+             
+            #contentwrapper {
+                height: 100%;
+                width: 100%;
+                margin: auto;   
+             }
+             #maincontent{
+                 height: 800px;
+             }
+            #name{
+                margin-top:auto;   
+             }
+            li{
+                height: 20px;
+             }
+            h3 {
+                margin: 0 0  1px 0; 
+                font: bold 18px ; 
+                letter-spacing: -1px; }
+/*---JS-CSS---*/
+            #map_canvas { 
+                width: 42%; 
+                height: 440px;  
+                float: left; 
+                position: relative; 
+                z-index: 30;
+                margin-top: 15px;     
+             }             
+             #locations { 
+                 list-style: none; 
+                 width: 250px; 
+                 height: 500px;  
+                 float: left;  
+             }
+             #locations li { 
+                 padding: 10px; 
+                 width:1100px;  
+                 float: left; 
+                 position: relative; 
+                 z-index: 20 ; }
+             #locations li:hover, 
+             #locations li:hover { 
+                 background: #292c2f url(../images/shadow.png) 128px 0 repeat-y; 
+             }
+             #locations li:hover, 
+             #locations li:hover { 
+                 color: red; 
+                 text-shadow: 0 1px 0px rgba(255,255,255,0.3); 
+             }
+             #more-info { 
+                 width: 25%; 
+                 float: right; 
+                 background: #292c2f; 
+                 padding: 20px; 
+                 height: 440px; 
+             }
+             #more-info * { 
+                 position: relative; 
+                 z-index: 40; 
+             }
+             #more-info > div { 
+                 background: #666666; 
+                 -moz-box-shadow: 0 0 14px rgba(70,49,1,0.5); 
+                 -webkit-box-shadow: 0 0 14px rgba(70,49,1,0.5); 
+                 padding: 20px; height: 400px; 
+             }
+             .longdesc { 
+                 display: none; 
+             }
+             ;
+             }
+@media (min-width: 650px) and (max-width: 1100px) {
+    
+                 #more-info{
+                     float:right;
+                     width: 30%;
+                     height: 100%;
+                     margin: auto;
+                     /*background-color:red;*/
+                     
+                 }
+                #locations{
+                     float: left;;
+                     width: 40%%;
+                     height: 100%;
+                     margin: auto;
+                     /*background-color: darkorange;*/
+    }
+                #contentwrapper{
+                    float: none;
+                     height: 100%;
+                     padding: inherit;
+                
+    }
+                #maincontent{
+                    height: 1000px;
+    }
+                #map_canvas {
+                    display: none;
+    }
+   
+}
+             
+@media (max-width: 649px) {
+    
+                #more-info{
+                     float:right;
+                     width: 30%;
+                     height: 100%;
+                     margin: auto;
+                     /*background-color:red;*/
+                     
+                 }
+                #locations{
+                     float: left;;
+                     width: 40%%;
+                     height: 100%;
+                     margin: auto;
+                     /*background-color: darkorange;*/
+    }
+                #contentwrapper{
+                    float: none;
+                     height: 100%;
+                     padding: inherit;
+                
+    }
+                #map_canvas {
+                    display: none;
+    }
+             
+                #wrapper{
+                    width: 649px;
+                    height: 100%;
+    }
+           
+    
+}
+             
+        </style>
+            
+ 
+<!--HTML-->   
+    
+        
+    </head>
+
+    <body>
+       <div id="wrapper">
+       
+            <header id="header">
+                <div id="logo">
+                    <a href="assignment8.html"><img src="img/mn_brew_wide2.png" alt="brew logo" height="100" width="170" title="site logo"></a>
+                </div><!--logo-->
+                <div id="name">
+                    <h1>Twin Cities Craft Brewer's Guide</h1>
+                </div><!--mame-->
+            </header><!--header-->
+       
+               
+                    <nav id="navbox">
+                        <ul>
+                      <li class="listructure"><a href="assignment8.html">Home</a></li>
+                            <li class="listructure"><a href="about.html">About</a></li>
+                            <li class="listructure"><a href="contactus.php">Contact Us</a></li>
+                            <li class="listructure"><a href="brewcation.html">Brewcations</a></li>
+                            <li class="listructure"><a href="ontap.html">On Tap</a></li>
+                            <li class="listructure"><a href="events.html">Events</a></li>
+                        </ul>
+                    </nav>
+                
+        <div id="contentwrapper">
+            <section id="maincontent">
+                
+               
+    <!--googlemapsslider-->  
+                 
+	
+
+	   
+<ul id="locations">
+	   
+        <li data-geo-lat="44.973223" data-geo-long="-93.2911137">
+            <h3>Sisyphus Brewing</h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Wednesday/Thursday: 3pm-10pm 
+            <br>Friday/Saturday: 12pm-12am
+            <br>
+            <br><strong>Phone:</strong> <br>612.444.8674
+            <br>
+            <br><strong>Email:</strong>  <br>sam@sisyphusbrewing.com 
+            <br>
+            <br><strong>Address:</strong> 
+            <br>712 Ontario Avenue W. #100
+            Minneapolis, MN 55403t</p>
+        </li><!--list1-->
+        
+        <li data-geo-lat="44.9732596" data-geo-long="-93.2120016">
+          <h3>Surly Brewing </h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Sunday/Thursday: 11am-11pm 
+            <br>Friday/Saturday: 11am-12am
+            <br>
+            <br><strong>Phone:</strong> <br>(763) 999-4040
+            <br>
+            <br><strong>Email:</strong>  
+            <br>surlybrewing.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>520 Malcolm Ave SE, Minneapolis, MN 55414</p>
+        </li><!--list2-->
+        
+        <li data-geo-lat="44.9849735" data-geo-long="-93.2813782">
+          <h3>Fulton Brewing</h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Tuesday/Friday: 3pm-10pm 
+            <br>Saturday: 12pm-11pm  
+            <br>Sunday: 12pm-6pm
+            <br>
+            <br><strong>Phone:</strong> <br>(612) 333-3208
+            <br>
+            <br><strong>Email:</strong>  <br>fultonbeer.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>414 N 6th Ave, Minneapolis, MN 55401</p>
+        </li><!--list3-->
+           
+        <li data-geo-lat="44.9852318" data-geo-long="-93.2787267">
+            <h3>Modist Brewing Co </h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Monday-Sunday: TBD
+            <br>
+            <br><strong>Phone:</strong> <br>(612) 454-0258
+            <br>
+            <br><strong>Email:</strong>  <br>modistbrewing.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>505 N 3rd St, Minneapolis, MN 55401</p>
+        </li><!--list4-->
+           
+        <li data-geo-lat="45.0034678" data-geo-long="-93.2537357">
+          <h3>Indeed Brewing</h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Wendnes/Thursday: 3pm-10pm 
+            <br>Friday/Saturday: 12pm-11pm  
+            <br>Sunday: 12pm-8pm
+            <br>
+            <br><strong>Phone:</strong> <br>(612) 843-5090
+            <br>
+            <br><strong>Email:</strong>  <br>indeedbrewing.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>711 NE 15th Ave, Minneapolis, MN 55413</p>
+        </li><!--list5-->
+           
+        <li data-geo-lat="44.9989058" data-geo-long="-93.2490437">
+          <h3>612 Brew</h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Wendnes/Thursday: 4pm-10pm 
+            <br>Friday:2:30-12am
+            <br>Saturday: 12pm-12pm  
+            <br>Sunday: 11:30pm-9pm
+            <br>
+            <br><strong>Phone:</strong> <br>(612) 930-4606
+            <br>
+            <br><strong>Email:</strong>  <br>612brew.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>945 Broadway St NE, Minneapolis, MN 55413</p>
+        </li><!--list6-->
+           
+        <li  data-geo-lat="44.99192546" data-geo-long="-93.2151561">
+          <h3>Insight Brewing</h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Monday/Thursday: 3pm-11pm 
+            <br>Friday: 3pm-12am
+            <br>Saturday: 12pm-12pm  
+            <br>Sunday: 12pm-11pm
+            <br>
+            <br><strong>Phone:</strong> <br>(612) 722-7222
+            <br>
+            <br><strong>Email:</strong>  <br>insightbrewing.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>2821 E Hennepin Ave, Minneapolis, MN 55413</p>
+        </li><!--list7-->
+           
+        <li  data-geo-lat="45.0044852" data-geo-long="-93.246549">
+          <h3>Sociable Cider Werks  </h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Thursday: 4pm-11pm 
+            <br>Friday: 4pm-12am
+            <br>Saturday: 12pm-12pm  
+            <br>Sunday: 12pm-6pm
+            <br>
+            <br><strong>Phone:</strong> <br>(612) 758-0105
+            <br>
+            <br><strong>Email:</strong>  <br>sociablecider.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>1500 Fillmore St NE, Minneapolis, MN 55413</p>
+        </li><!--list8-->
+           
+        <li data-geo-lat="44.9140698" data-geo-long="-93.1417977">
+          <h3>Summit Brewing</h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Thursday: 4pm-8pm 
+            <br>Friday: 4pm-10pm
+            <br>Saturday: 12pm-10pm  
+            <br>
+            <br><strong>Phone:</strong> <br>(651) 265-7800
+            <br>
+            <br><strong>Email:</strong>  <br>summitbrewing.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>910 Montreal Cir, St Paul, MN 55102</p>
+        </li><!--list9-->
+           
+        <li data-geo-lat="44.946682" data-geo-long="-93.0990743">
+          <h3>Great Waters Brewing </h3>
+             <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br>Monday/Sunday: 11pm-2am
+            <br>
+            <br><strong>Phone:</strong> <br>(651) 224-2739
+            <br>
+            <br><strong>Email:</strong>  <br>restaurantstpaulmn.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>426 St Peter St, St Paul, MN 55102</p>
+        </li><!--list10-->
+           
+        <li  data-geo-lat="44.9627148" data-geo-long="-93.073797">
+          <h3>Flat Earth Brewing  </h3>
+            <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br>TAPROOM IS NOW OPEN AT OUR NEW LOCATION 
+            <br>
+            <br><strong>Phone:</strong> <br>(651) 698-1945
+            <br>
+            <br><strong>Email:</strong>  <br>flatearthbrewing.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>688 Minnehaha Ave E, St Paul, MN 55106</p>
+        </li><!--list11-->
+           
+        <li  data-geo-lat="44.946682" data-geo-long="-93.0990743">
+          <h3>Tin Whiskers Brewing </h3>
+           <p class="longdesc">
+            <strong>Hours:</strong> 
+            <br> Tuesday/Thursday: 4pm-10pm 
+            <br>Friday: 3pm-11pm
+            <br>Saturday: 12pm-11pm 
+            <br>Sunday: 12pm-8pm
+            <br>
+            <br><strong>Phone:</strong> <br>(651) 330-4734
+            <br>
+            <br><strong>Email:</strong>  <br>twbrewing.com
+            <br>
+            <br><strong>Address:</strong> 
+            <br>125 E 9th St, St Paul, MN 55101</p>
+        </li><!--list12-->
+           
+       
+        
+</ul><!--locations-->
+                
+            
+
+                 <div id="map_canvas"></div>
+
+                 <div id="more-info">
+
+                    <h2>More Info</h2>
+                    <p>Hover over location on the left. (JavaScript must be enabled)</p>
+
+                 </div><!--more-info-->
+            </section><!--maincontent-->
+        </div><!--contentwrapper-->
+           
+<!--footer-->  
+  
+        <footer class="footer">
+
+			<p class="footer-company-motto">Twin Cities: Good people,Good beer!</p>
+
+			<p class="footer-links">
+				
+                            <a  href="assignment8.html">Home</a>·
+                            <a href="about.html">About</a>·
+                            <a href="contactus.php">Contact Us</a>·
+                            <a class="current" href="brewcation.html">Brewcations</a>·
+                            <a href="ontap.html">On Tap</a>·
+                            <a href="events.html">Events</a>·
+       
+				
+			</p>
+
+			<p class="footer-company-name">Twin Cities Craft Brewer's Guide &copy; 2016</p>
+
+		</footer>
+        </div><!--wrapper-->  
+        
+        <div id="map"></div>
+        
+<!--javascript-->        
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script>
+$(function(){
+  $('a').each(function() {
+    if ($(this).prop('href') == window.location.href) {
+      $(this).addClass('current');
+    }
+  });
+});
+</script>
+        
+        
+                
+
+    </body>
+
+             
+</html>
